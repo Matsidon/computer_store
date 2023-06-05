@@ -2,6 +2,7 @@
 
 ### Описание
 Приложение для магазина, торгующего компьютерами и комплектующими.
+В [application.properties](src/main/resources/application.properties) указаны настройки, с которыми можно запустить приложение.
 Класс [Product](src/main/java/easyBot/testTask/model/Product.java) описывает основные свойства всех товаров, хранящихся в БД. 
 Его реализации:
 * [Desktop](src/main/java/easyBot/testTask/model/Desktop.java) - настольный компьютер; обладает дополнительным свойством - форм-фактор (formFactor).
