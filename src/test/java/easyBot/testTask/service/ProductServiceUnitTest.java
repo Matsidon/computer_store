@@ -60,8 +60,9 @@ class ProductServiceUnitTest {
         Product product = Mockito.mock(Product.class);
         Optional<Product> productOptional = Optional.of(product);
 
+        when(productUpdateDto.getId()).thenReturn(new UUID(1, 2));
+        when(product.getId()).thenReturn(new UUID(1, 2));
         when(productMapper.toProduct(any(ProductUpdateDto.class))).thenReturn(product);
-        //todo
         when(productRepository.findById(any(UUID.class))).thenReturn(productOptional);
         when(productRepository.save(any(Product.class))).thenReturn(product);
 
