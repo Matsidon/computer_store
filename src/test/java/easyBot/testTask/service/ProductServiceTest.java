@@ -22,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class ProductServiceTest {
-
     @Autowired
     ProductService productService;
     @Autowired
@@ -35,8 +34,8 @@ class ProductServiceTest {
         productInputDto.setMaker("maker");
         productInputDto.setPrice(340);
         productInputDto.setSerialNumber("number");
-        Optional<Product> productFromDB = productService.addProduct(productInputDto);
-        productFromDB.ifPresent(value -> assertEquals("number", value.getSerialNumber()));
+        Product productFromDB = productService.addProduct(productInputDto);
+        assertEquals("number", productFromDB.getSerialNumber());
     }
 
     @Test
@@ -46,14 +45,14 @@ class ProductServiceTest {
         productInputDto.setMaker("maker");
         productInputDto.setPrice(340);
         productInputDto.setSerialNumber("number");
-        Optional<Product> product = productService.addProduct(productInputDto);
+        Product product = productService.addProduct(productInputDto);
 
         ProductUpdateDto productUpdateDto = new ScreenUpdateDto(13.2);
         productUpdateDto.setCount(1);
         productUpdateDto.setMaker("maker");
         productUpdateDto.setPrice(340);
         productUpdateDto.setSerialNumber("numberNew");
-        productUpdateDto.setId(product.get().getId());
+        productUpdateDto.setId(product.getId());
         Product productFromDB = productService.updateProduct(productUpdateDto);
         assertEquals("numberNew", productFromDB.getSerialNumber());
     }
@@ -78,8 +77,8 @@ class ProductServiceTest {
         productInputDto.setMaker("Maker");
         productInputDto.setPrice(100);
         productInputDto.setSerialNumber("Number");
-        Optional<Product> productFromDB = productService.addProduct(productInputDto);
-        UUID id = productFromDB.get().getId();
+        Product productFromDB = productService.addProduct(productInputDto);
+        UUID id = productFromDB.getId();
         Product productGetFromDB = productService.getProductById(id);
         assertEquals(id, productGetFromDB.getId());
     }

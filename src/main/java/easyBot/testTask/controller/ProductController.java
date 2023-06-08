@@ -20,7 +20,7 @@ public class ProductController {
     }
 
     @PostMapping()
-    public Optional<Product> addProduct(@RequestBody ProductInputDto productInputDto) {
+    public Product addProduct(@RequestBody ProductInputDto productInputDto) {
         return productService.addProduct(productInputDto);
     }
 

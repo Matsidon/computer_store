@@ -32,12 +32,11 @@ public class ProductServiceImpl implements ProductService {
      * @return
      */
     @Override
-    public Optional<Product> addProduct(ProductInputDto productInputDto) {
+    public Product addProduct(ProductInputDto productInputDto) {
         try {
             Product product = productMapper.toProduct(productInputDto);
-            Product productFromBD = productRepository.save(product);
             log.info("addProduct: {}", productInputDto);
-            return productRepository.findById(productFromBD.getId());
+            return productRepository.save(product);
         } catch (Exception e) {
             log.error("addProduct: throw new ProductException");
             throw new ProductException("Ошибка добавления товара: " + productInputDto.toString());
